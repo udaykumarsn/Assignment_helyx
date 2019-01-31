@@ -1,0 +1,94 @@
+{% load static %}
+<div class="text-center">
+    <h1 style="margin-left:-44px;">Registration App</h1>
+</div>
+<br>
+
+<div align="center" ><a id="login_toggle" style="font-size:20px">Login</a> &#92; <a id="toggle" style="font-size:20px">SignUp</a></div>
+<div class="signup_div">
+    <form class="form-horizontal" action="/signup/" method="post" >{% csrf_token %}
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email:</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Name:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="first_name" placeholder="Enter Name" name="first_name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="confirm_password">Confirm Password:</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="confirm_password" placeholder="Enter ConfirmPassword" name="confirm_password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+                <button type="submit" class="btn btn-default" value="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="login_div" >
+    <form class="form-horizontal" action="/login/" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email_id">Email:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="email_id" placeholder="Enter email" name="username">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="pwd" placeholder=" Enter password" name="password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+                <button type="submit" class="btn btn-default" value="submit" >Login</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<link rel="stylesheet" href="{% static 'css/assignment.css' %}">
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+$(".login_div").show();
+$(".signup_div").hide();
+    $(document).ready(function () {
+        $("#toggle").click(function () {
+            $(".login_div").hide();
+            $(".signup_div").show();
+        });
+    });
+
+    $(document).ready(function () {
+        $("#login_toggle").click(function () {
+            $(".signup_div").hide();
+            $(".login_div").show();
+        });
+    });
+
+
+</script>
+<script>
+    if message{
+    alert('{{message}}')
+    }
+</script>

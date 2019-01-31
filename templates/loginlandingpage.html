@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav align="right" style="background-color: #2196F3;height: 61px;">
+    <form class="form-horizontal" action="/logout/" method="post">{% csrf_token %}
+        <div class="form-group">
+        <div style="float:right; margin-right:10px;">
+            <button class="btn btn-default" value="submit" style="padding:10px;margin: 11px;">Logout</button>
+        </div>
+        </div>
+    </form>
+</nav>
+
+<form action="/resetpassword/" class="form-horizontal" method="post">{% csrf_token %}
+
+    <h1 style="text-align:center;">Reset password</h1>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="newpwd">New password:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control"  placeholder="Enter New Password" id="pwd1" name="pwd1">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="confirmpwd">Confirm password:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control"  placeholder="Enter Confirm Password" id="pwd2" name="pwd2" onChange="checkForm()">
+      </div>
+    </div>
+    <div id="divCheckPasswordMatch" style="text-align:center;"></div>
+
+    <div class="col-sm-offset-2 col-sm-2">
+            <button class="btn btn-default" value="submit">Submit</button>
+        </div>
+</form>
+
+
+{% for i in queryset %}
+<div class="row">
+        <div class="col-md-10">
+         	<div><b>{{i.user_id.first_name}}</b>
+            </div>
+            <div>{{i.post}}</div>
+        </div>
+</div>
+
+
+{% endfor %}
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+  function checkForm(form)
+  {
+  var password = $("#pwd1").val();
+    var confirmPassword = $("#pwd2").val();
+
+    if (password != confirmPassword)
+        $("#divCheckPasswordMatch").html("Passwords do not match!");
+    else
+        $("#divCheckPasswordMatch").html("Passwords match.");
+  }
+  $(document).ready(function () {
+   $("#pwd1, #pwd2").keyup(divCheckPasswordMatch);
+});
+
+</script>
